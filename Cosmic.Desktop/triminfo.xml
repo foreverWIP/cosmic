@@ -1,0 +1,8 @@
+<linker>
+    <assembly fullname="Vortice.DXGI">
+        <type fullname="Vortice.DXGI.IDXGIFactory" preserve="all" />
+    </assembly>
+    <assembly fullname="Vortice.Direct3D11">
+        <type fullname="Vortice.Direct3D11.ID3D11Texture2D" preserve="all" />
+    </assembly>
+</linker>

@@ -1,0 +1,99 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cosmic.Core\Cosmic.Core.csproj" />
+    <ProjectReference Include="..\Cosmic.Graphics\Cosmic.Graphics.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType Condition="'$(OS)' == 'Windows_NT'">WinExe</OutputType>
+    <OutputType Condition="'$(OS)' != 'Windows_NT'">Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ImplicitUsings>disable</ImplicitUsings>
+	  <PublishTrimmed>true</PublishTrimmed>
+    <IsTrimmable>true</IsTrimmable>
+    <TrimMode>link</TrimMode>
+    <!--<PublishAot>true</PublishAot>-->
+    <PublishSingleFile>true</PublishSingleFile>
+    <StripSymbols>true</StripSymbols>
+    <OptimizationPreference>Size</OptimizationPreference>
+    <IlcOptimizationPreference>Size</IlcOptimizationPreference>
+    <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>
+    <IlcTrimMetadata>true</IlcTrimMetadata>
+    <IlcGenerateStackTraceData>true</IlcGenerateStackTraceData>
+    <IlcGenerateDgmlFile>true</IlcGenerateDgmlFile>
+		<IlcGenerateMapFile>true</IlcGenerateMapFile>
+		<IlcDumpGeneratedIL>true</IlcDumpGeneratedIL>
+    <EnableUnsafeUTF7Encoding>false</EnableUnsafeUTF7Encoding>
+    <MetadataUpdaterSupport>false</MetadataUpdaterSupport>
+    <HttpActivityPropagationSupport>false</HttpActivityPropagationSupport>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <EventSourceSupport>false</EventSourceSupport>
+    <UseNativeHttpHandler>true</UseNativeHttpHandler>
+    <JsonSerializerIsReflectionEnabledByDefault>false</JsonSerializerIsReflectionEnabledByDefault>
+    <DynamicCodeSupport>false</DynamicCodeSupport>
+    <NullabilityInfoContextSupport>false</NullabilityInfoContextSupport>
+    <BuiltInComInteropSupport>false</BuiltInComInteropSupport>
+    <EnableUnsafeBinaryFormatterSerialization>false</EnableUnsafeBinaryFormatterSerialization>
+    <EnableUnsafeBinaryFormatterInDesigntimeLicenseContextSerialization>false</EnableUnsafeBinaryFormatterInDesigntimeLicenseContextSerialization>
+    <CustomResourceTypesSupport>false</CustomResourceTypesSupport>
+    <StartupHookSupport>false</StartupHookSupport>
+    <PredefinedCulturesOnly>true</PredefinedCulturesOnly>
+    <AutoreleasePoolSupport>false</AutoreleasePoolSupport>
+    <EnableCppCLIHostActivation>false</EnableCppCLIHostActivation>
+    <_EnableConsumingManagedCodeFromNativeHosting>false</_EnableConsumingManagedCodeFromNativeHosting>
+    <TrimmerSingleWarn>false</TrimmerSingleWarn>
+    <SelfContained>true</SelfContained>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TrimmableAssembly Include="Cosmic.Core" />
+    <TrimmableAssembly Include="Cosmic.Formats" />
+    <TrimmableAssembly Include="Cosmic.Desktop" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
+    <TrimmerRootDescriptor Include="triminfo.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <RuntimeHostConfigurationOption Include="Switch.System.Reflection.Disabled.DoNotThrowForNames" Value="true" />
+    <RuntimeHostConfigurationOption Include="Switch.System.Reflection.Disabled.DoNotThrowForAssembly" Value="true" />
+    <RuntimeHostConfigurationOption Include="Switch.System.Reflection.Disabled.DoNotThrowForAttributes" Value="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+		<Content Include="..\fnalibs\x64\**\*SDL2*.dll" Condition="'$(OS)' == 'Windows_NT'">
+			<Link>%(RecursiveDir)SDL2.dll</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\fnalibs\osx\**\*SDL2*.dylib" Condition="'$(OS)' != 'Windows_NT'">
+			<Link>%(RecursiveDir)SDL2.dylib</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\fnalibs\lib64\**\*SDL2*.so*" Condition="'$(OS)' != 'Windows_NT'">
+			<Link>%(RecursiveDir)SDL2.so</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+    <Content Include="..\fnalibs\x64\**\*theorafile*.dll" Condition="'$(OS)' == 'Windows_NT'">
+			<Link>%(RecursiveDir)libtheorafile.dll</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\fnalibs\osx\**\*theorafile*.dylib" Condition="'$(OS)' != 'Windows_NT'">
+			<Link>%(RecursiveDir)libtheorafile.dylib</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\fnalibs\lib64\**\*theorafile*.so*" Condition="'$(OS)' != 'Windows_NT'">
+			<Link>%(RecursiveDir)libtheorafile.so</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ImGui.NET" Version="1.89.7.1" />
+    <PackageReference Include="NVorbis" Version="0.10.5" />
+  </ItemGroup>
+
+</Project>

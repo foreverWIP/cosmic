@@ -1,0 +1,6 @@
+[submodule "SDL2-CS"]
+	path = SDL2-CS
+	url = https://github.com/flibitijibibo/SDL2-CS
+[submodule "Theorafile"]
+	path = Theorafile
+	url = https://github.com/FNA-XNA/Theorafile
