@@ -2,7 +2,7 @@
 
 ## NOTE: If you just want to know how to set up Sonic CD with Cosmic, click >[here](#playing-sonic-cd-with-cosmic)<
 
-Cosmic Engine is an ongoing major rewrite/"source port" of the [Retro Engine v3 Decompilation](https://github.com/Rubberduckycooly/Sonic-CD-11-Decompilation). The entire codebase has been moved to another programming language to make use of higher-level programming constructs and better memory safety features. Currently, it is written in C#, though that's subject to change (more [below](#current-roadmap-for-cosmic)). **Cosmic is currently not stable. You can start projects with it right now, but expect to run into issues.**
+Cosmic Engine is a major rewrite/"source port" of the [Retro Engine v3 Decompilation](https://github.com/Rubberduckycooly/Sonic-CD-11-Decompilation). The entire codebase has been moved to another programming language to make use of higher-level programming constructs and better memory safety features. **Cosmic is currently not stable. You can start projects with it right now, but expect to run into issues.**
 
 #### Current features of the engine include:
 - Rendering backend has been replaced with a new one using [Veldrid](https://github.com/veldrid/veldrid) to provide cross-platform hardware-accelerated graphics. Care has been taken to preserve features that were previously only present in the software renderer (such as multiple simultaneous cycling palettes and richer color blending).
@@ -21,7 +21,7 @@ Cosmic Engine is an ongoing major rewrite/"source port" of the [Retro Engine v3 
 
 **NOTE: If you just want to try out Cosmic, building is not necessary. See [here](#playing-sonic-cd-with-cosmic).**
 
-This repo is cleaned up from my own personal folder working on Cosmic before it was uploaded to GitHub, so apologies for any oddities! The steps boil down to:
+The steps boil down to:
 
 #### File preparation
 - Download and install the [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) (if you're unsure which to choose for your platform, choose the installer).
@@ -53,12 +53,3 @@ Cosmic requires a couple very small modifications to the v3 decomp's normal setu
 - Move the file `Achievements.txt` in the root of the repo you just cloned into the `Game` directory inside your Data folder. This will not affect it working with the original decomp, so you can safely keep it in the Data folder when using it elsewhere.
 - **If you want video support, you'll need the Steam version's videos folder.** Just copy the folder into the executable's directory, like with Data and Scripts.
 - You're ready to play! Just run `Cosmic.Desktop.exe` (on non-Windows platforms the `exe` will be omitted).
-
-## Current Roadmap for Cosmic
-
-Cosmic is currently written in C#. I chose it as the target language for a source port because:
-- I was already very familiar with it.
-- C# promises consistent runtime behavior across platforms, which would make it easy to get the engine compiled for multiple systems without having to mess with application logic or the build system heavily for cross-platform tasks.
-- C# also promises memory safety via garbage collection. This is mainly a convenience feature for developers, but it also means that it's much easier to track down bugs like null-pointer exceptions than it would be in C/C++.
-
-However, as of a little over a month ago, a [series](https://cohost.org/amy/post/1796458-what-do-you-do-when) of [predicaments](https://cohost.org/amy/post/2359696-ok-yeah-no-this-is-t) have left me frustrated with the development setup required to make the most of the language. Part of the drive to make Cosmic came from wanting to make development of projects running on Retro Engine v3 more accessible for others. However, C# development being locked behind heavy bias toward a specific IDE (Visual Studio) has me uncertain if this language is a good fit for the project. With this project becoming public, I hope to listen to other developers to get a good idea of whether this is a worthy tradeoff.
